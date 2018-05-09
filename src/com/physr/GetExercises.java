@@ -1,5 +1,6 @@
 package com.physr;
 
+import com.physr.exercises.Exercise;
 import com.physr.utilities.DBUtil;
 
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class GetExercises {
 
@@ -17,12 +19,19 @@ public class GetExercises {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM exercises");
         ) {
 
+            ArrayList<Exercise> myExercises = new ArrayList<Exercise>();
 
-            String format = "Name: %s \nDescription: %s \nReps: %d \n\n";
             while (rs.next()) {
-                //System.out.println("Name: " + rs.getString("Name"));
-                //System.out.println("Description: " + rs.getString("Description") + "\n");
-                System.out.format(format, rs.getString("Name"), rs.getString("Description"), rs.getInt("Repetitions") );
+                Exercise ex = new Exercise();
+                ex.setID(rs.getInt("ID"));
+                ex.setName(rs.getString("Name"));
+                ex.setDescription(rs.getString("Description"));
+                ex.setReps(rs.getInt("Repetitions"));
+                myExercises.add(ex);
+            }
+
+            for (Exercise ex: myExercises) {
+                ex.display();
             }
 
 
