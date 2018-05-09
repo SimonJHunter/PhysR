@@ -6,9 +6,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Exercises ex = new Exercises();
+        GetExercises ex = new GetExercises();
         try {
             ex.showExcercises();
+
+            //ex.updateReps(2);
+            //ex.showExcercises();
+
+            //ex.insertClient("Matt", "Fletcher");
+
         } catch (SQLException e)
         {
 
